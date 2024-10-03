@@ -2,3 +2,10 @@ entity  People {
   firstname String
   lastname String
 }
+
+entity Address {
+  street String
+  city String
+  state String
+  zip String
+}
