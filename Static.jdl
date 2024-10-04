@@ -9,3 +9,7 @@ entity Address {
   state String
   zip String
 }
+
+service People with serviceClass
+
+dto People with mapstruct

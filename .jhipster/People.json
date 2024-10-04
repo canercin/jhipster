@@ -3,6 +3,7 @@
     "changelogDate": "20241003171137"
   },
   "applications": "*",
+  "dto": "mapstruct",
   "fields": [
     {
       "fieldName": "firstname",
@@ -15,5 +16,6 @@
   ],
   "name": "People",
   "relationships": [],
-  "searchEngine": "no"
+  "searchEngine": "no",
+  "service": "serviceClass"
 }

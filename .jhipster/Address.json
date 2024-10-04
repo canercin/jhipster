@@ -1,0 +1,27 @@
+{
+  "annotations": {
+    "changelogDate": "20241004112750"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "street",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zip",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Address",
+  "relationships": [],
+  "searchEngine": "no"
+}

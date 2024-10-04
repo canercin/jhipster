@@ -1,19 +1,18 @@
 import { IPeople, NewPeople } from './people.model';
 
 export const sampleWithRequiredData: IPeople = {
-  id: 13143,
+  id: 23559,
 };
 
 export const sampleWithPartialData: IPeople = {
-  id: 7207,
-  firstname: 'unless coolly',
-  lastname: 'unlike negotiation when',
+  id: 22287,
+  lastname: 'limping',
 };
 
 export const sampleWithFullData: IPeople = {
-  id: 8110,
-  firstname: 'joyfully',
-  lastname: 'cautious quaver quarrelsomely',
+  id: 29100,
+  firstname: 'er canter',
+  lastname: 'jellyfish minty',
 };
 
 export const sampleWithNewData: NewPeople = {
