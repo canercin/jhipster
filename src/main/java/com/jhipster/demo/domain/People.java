@@ -1,7 +1,10 @@
 package com.jhipster.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A People.
@@ -23,6 +26,10 @@ public class People implements Serializable {
 
     @Column(name = "lastname")
     private String lastname;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "people")
+    @JsonIgnoreProperties(value = { "people" }, allowSetters = true)
+    private Set<Address> addresses = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -63,6 +70,37 @@ public class People implements Serializable {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Set<Address> getAddresses() {
+        return this.addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        if (this.addresses != null) {
+            this.addresses.forEach(i -> i.setPeople(null));
+        }
+        if (addresses != null) {
+            addresses.forEach(i -> i.setPeople(this));
+        }
+        this.addresses = addresses;
+    }
+
+    public People addresses(Set<Address> addresses) {
+        this.setAddresses(addresses);
+        return this;
+    }
+
+    public People addAddress(Address address) {
+        this.addresses.add(address);
+        address.setPeople(this);
+        return this;
+    }
+
+    public People removeAddress(Address address) {
+        this.addresses.remove(address);
+        address.setPeople(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

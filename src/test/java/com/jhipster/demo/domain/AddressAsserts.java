@@ -60,6 +60,8 @@ public class AddressAsserts {
      * @param actual the actual entity
      */
     public static void assertAddressUpdatableRelationshipsEquals(Address expected, Address actual) {
-        // empty method
+        assertThat(expected)
+            .as("Verify Address relationships")
+            .satisfies(e -> assertThat(e.getPeople()).as("check people").isEqualTo(actual.getPeople()));
     }
 }

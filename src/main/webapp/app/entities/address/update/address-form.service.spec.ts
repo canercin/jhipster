@@ -24,6 +24,7 @@ describe('Address Form Service', () => {
             city: expect.any(Object),
             state: expect.any(Object),
             zip: expect.any(Object),
+            people: expect.any(Object),
           }),
         );
       });
@@ -38,6 +39,7 @@ describe('Address Form Service', () => {
             city: expect.any(Object),
             state: expect.any(Object),
             zip: expect.any(Object),
+            people: expect.any(Object),
           }),
         );
       });

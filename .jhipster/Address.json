@@ -22,6 +22,14 @@
     }
   ],
   "name": "Address",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "people",
+      "otherEntityRelationshipName": "address",
+      "relationshipName": "people",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "searchEngine": "no"
 }

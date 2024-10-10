@@ -1,5 +1,6 @@
 package com.jhipster.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -29,6 +30,10 @@ public class Address implements Serializable {
 
     @Column(name = "zip")
     private String zip;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "addresses" }, allowSetters = true)
+    private People people;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -95,6 +100,19 @@ public class Address implements Serializable {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public People getPeople() {
+        return this.people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
+    }
+
+    public Address people(People people) {
+        this.setPeople(people);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

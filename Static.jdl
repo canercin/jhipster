@@ -13,3 +13,7 @@ entity Address {
 service People with serviceClass
 
 dto People with mapstruct
+
+relationship ManyToOne {
+  Address{people} to People{address}
+}

@@ -32,6 +32,23 @@
           <label class="form-label" for="field_zip">Zip</label>
           <input type="text" class="form-control" name="zip" id="field_zip" data-cy="zip" formControlName="zip" />
         </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_people">People</label>
+          <select
+            class="form-control"
+            id="field_people"
+            data-cy="people"
+            name="people"
+            formControlName="people"
+            [compareWith]="comparePeople"
+          >
+            <option [ngValue]="null"></option>
+            @for (peopleOption of peopleSharedCollection; track $index) {
+              <option [ngValue]="peopleOption">{{ peopleOption.id }}</option>
+            }
+          </select>
+        </div>
       </div>
 
       <div>

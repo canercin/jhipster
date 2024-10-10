@@ -70,6 +70,12 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
+            <th scope="col" jhiSortBy="people.id">
+              <div class="d-flex">
+                <span>People</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -83,6 +89,13 @@
               <td>{{ address.city }}</td>
               <td>{{ address.state }}</td>
               <td>{{ address.zip }}</td>
+              <td>
+                @if (address.people) {
+                  <div>
+                    <a [routerLink]="['/people', address.people.id, 'view']">{{ address.people.id }}</a>
+                  </div>
+                }
+              </td>
               <td class="text-end">
                 <div class="btn-group">
                   <a [routerLink]="['/address', address.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

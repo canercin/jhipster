@@ -22,6 +22,7 @@ type AddressFormGroupContent = {
   city: FormControl<IAddress['city']>;
   state: FormControl<IAddress['state']>;
   zip: FormControl<IAddress['zip']>;
+  people: FormControl<IAddress['people']>;
 };
 
 export type AddressFormGroup = FormGroup<AddressFormGroupContent>;
@@ -45,6 +46,7 @@ export class AddressFormService {
       city: new FormControl(addressRawValue.city),
       state: new FormControl(addressRawValue.state),
       zip: new FormControl(addressRawValue.zip),
+      people: new FormControl(addressRawValue.people),
     });
   }
 

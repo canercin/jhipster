@@ -1,6 +1,7 @@
 package com.jhipster.demo.domain;
 
 import static com.jhipster.demo.domain.AddressTestSamples.*;
+import static com.jhipster.demo.domain.PeopleTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.jhipster.demo.web.rest.TestUtil;
@@ -20,5 +21,17 @@ class AddressTest {
 
         address2 = getAddressSample2();
         assertThat(address1).isNotEqualTo(address2);
+    }
+
+    @Test
+    void peopleTest() {
+        Address address = getAddressRandomSampleGenerator();
+        People peopleBack = getPeopleRandomSampleGenerator();
+
+        address.setPeople(peopleBack);
+        assertThat(address.getPeople()).isEqualTo(peopleBack);
+
+        address.people(null);
+        assertThat(address.getPeople()).isNull();
     }
 }

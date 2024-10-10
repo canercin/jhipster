@@ -15,7 +15,15 @@
     }
   ],
   "name": "People",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "people",
+      "relationshipName": "address",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "searchEngine": "no",
   "service": "serviceClass"
 }

@@ -1,9 +1,12 @@
 package com.jhipster.demo.domain;
 
+import static com.jhipster.demo.domain.AddressTestSamples.*;
 import static com.jhipster.demo.domain.PeopleTestSamples.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.jhipster.demo.web.rest.TestUtil;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 class PeopleTest {
@@ -20,5 +23,27 @@ class PeopleTest {
 
         people2 = getPeopleSample2();
         assertThat(people1).isNotEqualTo(people2);
+    }
+
+    @Test
+    void addressTest() {
+        People people = getPeopleRandomSampleGenerator();
+        Address addressBack = getAddressRandomSampleGenerator();
+
+        people.addAddress(addressBack);
+        assertThat(people.getAddresses()).containsOnly(addressBack);
+        assertThat(addressBack.getPeople()).isEqualTo(people);
+
+        people.removeAddress(addressBack);
+        assertThat(people.getAddresses()).doesNotContain(addressBack);
+        assertThat(addressBack.getPeople()).isNull();
+
+        people.addresses(new HashSet<>(Set.of(addressBack)));
+        assertThat(people.getAddresses()).containsOnly(addressBack);
+        assertThat(addressBack.getPeople()).isEqualTo(people);
+
+        people.setAddresses(new HashSet<>());
+        assertThat(people.getAddresses()).doesNotContain(addressBack);
+        assertThat(addressBack.getPeople()).isNull();
     }
 }

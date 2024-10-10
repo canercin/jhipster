@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, from, of } from 'rxjs';
 
+import { IPeople } from 'app/entities/people/people.model';
+import { PeopleService } from 'app/entities/people/service/people.service';
 import { AddressService } from '../service/address.service';
 import { IAddress } from '../address.model';
 import { AddressFormService } from './address-form.service';
@@ -16,6 +18,7 @@ describe('Address Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let addressFormService: AddressFormService;
   let addressService: AddressService;
+  let peopleService: PeopleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,17 +41,43 @@ describe('Address Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     addressFormService = TestBed.inject(AddressFormService);
     addressService = TestBed.inject(AddressService);
+    peopleService = TestBed.inject(PeopleService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('Should update editForm', () => {
+    it('Should call People query and add missing value', () => {
       const address: IAddress = { id: 456 };
+      const people: IPeople = { id: 32750 };
+      address.people = people;
+
+      const peopleCollection: IPeople[] = [{ id: 24760 }];
+      jest.spyOn(peopleService, 'query').mockReturnValue(of(new HttpResponse({ body: peopleCollection })));
+      const additionalPeople = [people];
+      const expectedCollection: IPeople[] = [...additionalPeople, ...peopleCollection];
+      jest.spyOn(peopleService, 'addPeopleToCollectionIfMissing').mockReturnValue(expectedCollection);
 
       activatedRoute.data = of({ address });
       comp.ngOnInit();
 
+      expect(peopleService.query).toHaveBeenCalled();
+      expect(peopleService.addPeopleToCollectionIfMissing).toHaveBeenCalledWith(
+        peopleCollection,
+        ...additionalPeople.map(expect.objectContaining),
+      );
+      expect(comp.peopleSharedCollection).toEqual(expectedCollection);
+    });
+
+    it('Should update editForm', () => {
+      const address: IAddress = { id: 456 };
+      const people: IPeople = { id: 21903 };
+      address.people = people;
+
+      activatedRoute.data = of({ address });
+      comp.ngOnInit();
+
+      expect(comp.peopleSharedCollection).toContain(people);
       expect(comp.address).toEqual(address);
     });
   });
@@ -118,6 +147,18 @@ describe('Address Management Update Component', () => {
       expect(addressService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Compare relationships', () => {
+    describe('comparePeople', () => {
+      it('Should forward to peopleService', () => {
+        const entity = { id: 123 };
+        const entity2 = { id: 456 };
+        jest.spyOn(peopleService, 'comparePeople');
+        comp.comparePeople(entity, entity2);
+        expect(peopleService.comparePeople).toHaveBeenCalledWith(entity, entity2);
+      });
     });
   });
 });
