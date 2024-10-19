@@ -1,22 +1,22 @@
 import { IAddress, NewAddress } from './address.model';
 
 export const sampleWithRequiredData: IAddress = {
-  id: 27125,
+  id: 15875,
 };
 
 export const sampleWithPartialData: IAddress = {
-  id: 18971,
-  street: 'Schmitt Corners',
-  state: 'qua',
-  zip: 'gleefully',
+  id: 29481,
+  street: 'W 4th Avenue',
+  state: 'seemingly excepting',
+  zip: 'aw anti',
 };
 
 export const sampleWithFullData: IAddress = {
-  id: 4265,
-  street: 'Leuschke Corner',
-  city: 'East Joshua',
-  state: 'notwithstanding effector',
-  zip: 'bah',
+  id: 3025,
+  street: 'Myrl Courts',
+  city: 'New Alvertaton',
+  state: 'haversack meaningfully nocturnal',
+  zip: 'cautious',
 };
 
 export const sampleWithNewData: NewAddress = {

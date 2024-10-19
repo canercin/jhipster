@@ -17,3 +17,18 @@ dto People with mapstruct
 relationship ManyToOne {
   Address{people} to People{address}
 }
+
+entity Warehouse {
+  name String
+  address String
+}
+
+entity Product {
+  name String
+  description String
+  price BigDecimal
+}
+
+relationship  ManyToMany {
+  Warehouse{products} to Product{warehouses}
+}

@@ -49,10 +49,10 @@ describe('Address Management Update Component', () => {
   describe('ngOnInit', () => {
     it('Should call People query and add missing value', () => {
       const address: IAddress = { id: 456 };
-      const people: IPeople = { id: 32750 };
+      const people: IPeople = { id: 24326 };
       address.people = people;
 
-      const peopleCollection: IPeople[] = [{ id: 24760 }];
+      const peopleCollection: IPeople[] = [{ id: 14843 }];
       jest.spyOn(peopleService, 'query').mockReturnValue(of(new HttpResponse({ body: peopleCollection })));
       const additionalPeople = [people];
       const expectedCollection: IPeople[] = [...additionalPeople, ...peopleCollection];
@@ -71,7 +71,7 @@ describe('Address Management Update Component', () => {
 
     it('Should update editForm', () => {
       const address: IAddress = { id: 456 };
-      const people: IPeople = { id: 21903 };
+      const people: IPeople = { id: 22157 };
       address.people = people;
 
       activatedRoute.data = of({ address });
